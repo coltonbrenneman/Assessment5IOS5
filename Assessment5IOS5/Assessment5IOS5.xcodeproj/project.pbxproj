@@ -12,6 +12,9 @@
 		44B3AF9B2A48C257007F2D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B3AF992A48C257007F2D78 /* Main.storyboard */; };
 		44B3AF9D2A48C258007F2D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B3AF9C2A48C258007F2D78 /* Assets.xcassets */; };
 		44B3AFA02A48C258007F2D78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B3AF9E2A48C258007F2D78 /* LaunchScreen.storyboard */; };
+		44B3AFAF2A48CA59007F2D78 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3AFAE2A48CA59007F2D78 /* AlbumDetailViewController.swift */; };
+		44B3AFB12A48CA6F007F2D78 /* ArtistListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3AFB02A48CA6F007F2D78 /* ArtistListTableViewController.swift */; };
+		44B3AFB52A48CACB007F2D78 /* ArtistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3AFB42A48CACB007F2D78 /* ArtistTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		44B3AF9C2A48C258007F2D78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44B3AF9F2A48C258007F2D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44B3AFA12A48C258007F2D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44B3AFAE2A48CA59007F2D78 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
+		44B3AFB02A48CA6F007F2D78 /* ArtistListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListTableViewController.swift; sourceTree = "<group>"; };
+		44B3AFB42A48CACB007F2D78 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 		44B3AF922A48C257007F2D78 /* Assessment5IOS5 */ = {
 			isa = PBXGroup;
 			children = (
+				44B3AFA92A48CA06007F2D78 /* Controllers */,
 				44B3AFA82A48C280007F2D78 /* Storyboards */,
 				44B3AFA72A48C272007F2D78 /* SupportingFiles */,
 			);
@@ -78,6 +85,48 @@
 				44B3AF9E2A48C258007F2D78 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		44B3AFA92A48CA06007F2D78 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				44B3AFAA2A48CA0E007F2D78 /* ViewControllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		44B3AFAA2A48CA0E007F2D78 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				44B3AFAD2A48CA37007F2D78 /* ViewControllers */,
+				44B3AFAC2A48CA1D007F2D78 /* CustomCellControllers */,
+				44B3AFAB2A48CA17007F2D78 /* TableViewControllers */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		44B3AFAB2A48CA17007F2D78 /* TableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				44B3AFB02A48CA6F007F2D78 /* ArtistListTableViewController.swift */,
+			);
+			path = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		44B3AFAC2A48CA1D007F2D78 /* CustomCellControllers */ = {
+			isa = PBXGroup;
+			children = (
+				44B3AFB42A48CACB007F2D78 /* ArtistTableViewCell.swift */,
+			);
+			path = CustomCellControllers;
+			sourceTree = "<group>";
+		};
+		44B3AFAD2A48CA37007F2D78 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				44B3AFAE2A48CA59007F2D78 /* AlbumDetailViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +200,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44B3AFB12A48CA6F007F2D78 /* ArtistListTableViewController.swift in Sources */,
 				44B3AF942A48C257007F2D78 /* AppDelegate.swift in Sources */,
+				44B3AFB52A48CACB007F2D78 /* ArtistTableViewCell.swift in Sources */,
 				44B3AF962A48C257007F2D78 /* SceneDelegate.swift in Sources */,
+				44B3AFAF2A48CA59007F2D78 /* AlbumDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
