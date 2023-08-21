@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ToplevelSongDictionary: Codable {
+struct TopLevelSongDictionary: Codable {
     let resultCount: Int
     let results: [SongResult]
 }
