@@ -5,7 +5,7 @@
 //  Created by Colton Brenneman on 6/25/23.
 //
 
-import Foundation
+import UIKit.UIImage
 
 struct NetworkingController {
     
@@ -59,5 +59,22 @@ struct NetworkingController {
             }
         }.resume()
     } // End of fetchSong
+    
+    func fetchImage(with imageURL: String, completion: @escaping(Result<UIImage, ResultError>) -> Void) {
+        guard let url = URL(string: imageURL) else { completion(.failure(.invalidURL)) ; return }
+        
+        print(url)
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error {
+                completion(.failure(.thrownError(error))) ; return
+            } // End of error
+           
+            guard let imageData = data else { completion(.failure(.noData)) ; return }
+            
+            guard let movieImage = UIImage(data: imageData) else { return }
+            completion(.success(movieImage))
+        }.resume() // End of dataTask
+    } // End of fetchImage
     
 } // End of struct
