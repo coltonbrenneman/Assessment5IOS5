@@ -13,7 +13,6 @@ struct NetworkingController {
         guard let baseURL = URL(string: "https://itunes.apple.com/search") else { completion(.failure(.invalidURL)) ; return }
         
         var urlRequest = URLRequest(url: baseURL)
-//        urlRequest.url?.append(path: searchTerm)
         let entityQueryItem = URLQueryItem(name: "entity", value: "album")
         let artistQueryItem = URLQueryItem(name: "term", value: searchTerm)
         urlRequest.url?.append(queryItems: [entityQueryItem, artistQueryItem])
@@ -36,25 +35,36 @@ struct NetworkingController {
         }.resume()
     } // End of fetchArtist
     
-    func fetchSong(with songID: Int, completion: @escaping(Result<TopLevelSongDictionary, ResultError>) -> Void) {
+    func fetchSong(with songID: Int, completion: @escaping(Result<[SongResult], ResultError>) -> Void) {
         // https://itunes.apple.com/lookup?entity=song&id=1373516908
-        guard let baseURL = URL(string: "https://itunes.apple.com/lookup") else { completion(.failure(.invalidURL)) ; return }
+        guard let baseURL = URL(string: "https://itunes.apple.com/lookup") else {
+            completion(.failure(.invalidURL))
+            return
+        }
         
         var urlRequest = URLRequest(url: baseURL)
-        let entiryQueryItem = URLQueryItem(name: "entiry", value: "song")
+        let entityQueryItem = URLQueryItem(name: "entity", value: "song")
         let songQueryItem = URLQueryItem(name: "id", value: "\(songID)")
-        urlRequest.url?.append(queryItems: [entiryQueryItem, songQueryItem])
+        urlRequest.url?.append(queryItems: [entityQueryItem, songQueryItem])
         print(urlRequest.url)
         
         URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             if let error {
-                completion(.failure(.thrownError(error))) ; return
-            } // End of error
-            guard let data else { completion(.failure(.noData)) ; return }
+                completion(.failure(.thrownError(error)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData)) ; print("No data recived")
+                return
+            }
+            print(String(data: data, encoding: .utf8) ?? "Unalbe to convert data to string")
             do {
                 let songTLD = try JSONDecoder().decode(TopLevelSongDictionary.self, from: data)
-                completion(.success(songTLD))
+                let trackArray = songTLD.results.filter {$0.wrapperType == "track"}
+                completion(.success(trackArray))
             } catch {
+                print("There's a decoding error Colton", error.localizedDescription)
                 completion(.failure(.thrownError(error)))
             }
         }.resume()

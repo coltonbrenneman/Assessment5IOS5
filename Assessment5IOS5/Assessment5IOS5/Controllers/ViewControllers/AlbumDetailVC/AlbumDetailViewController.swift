@@ -10,33 +10,53 @@ import UIKit
 class AlbumDetailViewController: UIViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var albumImageView: UIImageView!
     @IBOutlet weak var albumNameLabel: UILabel!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var songResultsTableView: UITableView!
-    
+    @IBOutlet weak var albumImageView: UIImageView!
+
     // MARK: - Properties
-    var albumSent: TopLevelSongDictionary?
-    var albumImageSent: UIImage?
+    var albumImageSentViaSegue: UIImage?
+    var albumSentViaSegue: [SongResult]? {
+        didSet {
+            updateUI()
+        }
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        songResultsTableView.dataSource = self
+        songResultsTableView.reloadData()
     }
+    
+    // MARK: - Functions
+    func updateUI() {
+        guard let unWrappedSong = albumSentViaSegue,
+              let unWrappedImage = albumImageSentViaSegue else { return }
+        
+        DispatchQueue.main.async {
+            self.albumNameLabel.text = unWrappedSong.first?.collectionName
+            self.albumImageView.image = unWrappedImage
+        }
+    } // End of updateUI
+    
 } // End of class
 
 extension AlbumDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return albumSent?.results.count ?? 0
+        return albumSentViaSegue?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath)
         
-        let songs = albumSent?.results[indexPath.row]
+        guard let song = albumSentViaSegue?[indexPath.row] else { return cell }
+        let durationInSeconds = (song.songDuration ?? 0) / 1000 
+        let minutes = durationInSeconds / 60
+        let seconds = durationInSeconds % 60
         var config = cell.defaultContentConfiguration()
-        config.text = songs?.songName
-        config.secondaryText = "\(songs?.songDuration ?? 0)"
+        config.text = song.songName
+        config.secondaryText =  String(format: "%d:%02d", minutes, seconds)
         cell.contentConfiguration = config
         
         return cell

@@ -18,7 +18,6 @@ class AlbumListTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -46,9 +45,9 @@ class AlbumListTableViewController: UITableViewController {
         
         NetworkingController().fetchSong(with: album.albumID) { result in
             switch result {
-            case .success(let albumDict):
-                destination.albumImageSent = albumImage
-                destination.albumSent = albumDict.self
+            case .success(let songDetailDict):
+                destination.albumImageSentViaSegue = albumImage
+                destination.albumSentViaSegue = songDetailDict
             case .failure(let error):
                 print(error.errorDescription)
             }

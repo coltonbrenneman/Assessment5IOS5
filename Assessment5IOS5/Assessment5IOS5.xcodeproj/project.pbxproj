@@ -68,6 +68,7 @@
 		44B3AF922A48C257007F2D78 /* Assessment5IOS5 */ = {
 			isa = PBXGroup;
 			children = (
+				44B3AFB72A48CB2B007F2D78 /* Networking */,
 				44B3AFB62A48CB25007F2D78 /* Models */,
 				44B3AFA92A48CA06007F2D78 /* Controllers */,
 				44B3AFA82A48C280007F2D78 /* Storyboards */,
@@ -99,7 +100,6 @@
 		44B3AFA92A48CA06007F2D78 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				44B3AFB72A48CB2B007F2D78 /* ModelControllers */,
 				44B3AFAA2A48CA0E007F2D78 /* ViewControllers */,
 			);
 			path = Controllers;
@@ -148,13 +148,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		44B3AFB72A48CB2B007F2D78 /* ModelControllers */ = {
+		44B3AFB72A48CB2B007F2D78 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				44B3AFB82A48CB3B007F2D78 /* NetworkingController.swift */,
 				44B3AFBA2A48CB43007F2D78 /* ResultError.swift */,
 			);
-			path = ModelControllers;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

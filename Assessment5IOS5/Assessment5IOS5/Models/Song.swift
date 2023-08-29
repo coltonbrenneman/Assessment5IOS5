@@ -14,11 +14,19 @@ struct TopLevelSongDictionary: Codable {
 
 struct SongResult: Codable {
     private enum CodingKeys: String, CodingKey {
-        case songID = "trackId"
+        case songID = "collectionId"
         case songName = "trackName"
         case songDuration = "trackTimeMillis"
+        case wrapperType
+        case kind
+        case collectionName
+        
     }
-    let songID: Int
-    let songName: String
-    let songDuration: Int
+    let songID: Int?
+    let songName: String?
+    let songDuration: Int?
+    let collectionName: String?
+    let wrapperType: String?
+    let kind: String?
 }
+
